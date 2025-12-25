@@ -10,6 +10,7 @@ dependencies {
     compileOnly(libs.kotlin.gradlePlugin)
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.room.gradlePlugin)
+    compileOnly(libs.kover.gradlePlugin)
 }
 
 gradlePlugin {
@@ -41,6 +42,10 @@ gradlePlugin {
         register("jvmLibrary") {
             id = "vibeplayer.jvm.library"
             implementationClass = "JvmLibraryConventionPlugin"
+        }
+        register("androidKover") {
+            id = "vibeplayer.android.kover"
+            implementationClass = "AndroidKoverConventionPlugin"
         }
     }
 }

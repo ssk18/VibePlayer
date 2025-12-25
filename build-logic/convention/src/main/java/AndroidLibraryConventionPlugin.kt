@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.LibraryExtension
 import com.ssk.vibeplayer.buillogic.convention.ExtensionType
+import com.ssk.vibeplayer.buillogic.convention.configureAndroidLint
 import com.ssk.vibeplayer.buillogic.convention.configureBuildTypes
 import com.ssk.vibeplayer.buillogic.convention.configureKotlinAndroid
 import com.ssk.vibeplayer.buillogic.convention.libs
@@ -29,6 +30,8 @@ class AndroidLibraryConventionPlugin: Plugin<Project> {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                     consumerProguardFiles("consumer-rules.pro")
                 }
+
+                configureAndroidLint(this)
             }
 
             dependencies {
