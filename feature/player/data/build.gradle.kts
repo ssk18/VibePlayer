@@ -1,0 +1,14 @@
+plugins {
+    alias(libs.plugins.vibeplayer.android.library)
+}
+
+android {
+    namespace = "com.ssk.vibeplayer.feature.player.data"
+}
+
+dependencies {
+    implementation(projects.core.domain)
+    implementation(projects.core.media)
+    implementation(projects.feature.player.domain)
+    implementation(libs.bundles.koin)
+}
