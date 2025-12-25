@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base app theme -->
+    <style name="Theme.VibePlayer" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">@color/backgroundSurface</item>
+        <item name="android:navigationBarColor">@color/backgroundSurface</item>
+    </style>
 
-    <style name="Theme.VibePlayer" parent="android:Theme.Material.Light.NoActionBar" />
+    <!-- Splash screen theme -->
+    <style name="Theme.VibePlayer.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/backgroundSurface</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/player_logo</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/backgroundSurface</item>
+        <item name="postSplashScreenTheme">@style/Theme.VibePlayer</item>
+    </style>
 </resources>

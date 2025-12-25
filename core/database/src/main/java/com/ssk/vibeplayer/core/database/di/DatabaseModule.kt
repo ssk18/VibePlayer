@@ -1,18 +1,35 @@
 package com.ssk.vibeplayer.core.database.di
 
+import android.content.Context
 import androidx.room.Room
 import com.ssk.vibeplayer.core.database.VibePlayerDatabase
-import org.koin.android.ext.koin.androidContext
-import org.koin.dsl.module
+import com.ssk.vibeplayer.core.database.dao.TrackDao
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-val databaseModule = module {
-    single {
-        Room.databaseBuilder(
-            androidContext(),
+@Module
+@InstallIn(SingletonComponent::class)
+object DatabaseModule {
+
+    @Provides
+    @Singleton
+    fun provideDatabase(
+        @ApplicationContext context: Context
+    ): VibePlayerDatabase {
+        return Room.databaseBuilder(
+            context,
             VibePlayerDatabase::class.java,
             "vibeplayer_database"
         ).build()
     }
 
-    single { get<VibePlayerDatabase>().trackDao() }
+    @Provides
+    @Singleton
+    fun provideTrackDao(database: VibePlayerDatabase): TrackDao {
+        return database.trackDao()
+    }
 }

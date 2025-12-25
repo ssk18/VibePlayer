@@ -9,7 +9,7 @@ lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.02.00"
 ksp = "2.0.21-1.0.28"
-room = "2.6.1"
+room = "2.7.0"
 hilt = "2.52"
 hiltNavCompose = "1.2.0"
 navigation-compose = "2.8.8"
@@ -29,14 +29,12 @@ coroutines = "1.10.1"
 kotlinx-serialization = "1.8.0"
 sqlcipher = "4.5.4"
 sqlite = "2.4.0"
-koin = "4.0.0"
 timber = "5.0.1"
 androidTools = "31.9.1"
 securityCrypto = "1.1.0-alpha06"
 datastorePreferences = "1.1.4"
 androidx-datastore = "1.1.4"
 work = "2.10.0"
-koin-annotations = "2.0.1-Beta1"
 kover = "0.9.1"
 media3 = "1.5.1"
 lifecycleViewModel = "2.8.7"
@@ -97,13 +95,6 @@ serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", v
 sqlcipher = { group = "net.zetetic", name = "android-database-sqlcipher", version.ref = "sqlcipher" }
 sqlite = { group = "androidx.sqlite", name = "sqlite", version.ref = "sqlite" }
 
-# Koin
-koin-android-workmanager = { group = "io.insert-koin", name = "koin-androidx-workmanager", version.ref = "koin" }
-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
-koin-core = { group = "io.insert-koin", name = "koin-core", version.ref = "koin" }
-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin" }
-koin-androidx-startup = {group = "io.insert-koin", name = "koin-androidx-startup", version.ref = "koin"}
-
 # Datastore
 androidx-datastore-preference = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastorePreferences" }
 androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "androidx-datastore" }
@@ -135,6 +126,7 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 kover-gradlePlugin = { group = "org.jetbrains.kotlinx", name = "kover-gradle-plugin", version.ref = "kover" }
+hilt-gradlePlugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -170,18 +162,6 @@ compose = [
 compose-debug = [
     "androidx-ui-tooling",
     "androidx-ui-test-manifest"
-]
-koin = [
-    "koin-core",
-    "koin-android",
-    "koin-android-workmanager",
-    "koin-androidx-startup"
-]
-koin-compose = [
-    "koin-core",
-    "koin-android",
-    "koin-android-workmanager",
-    "koin-androidx-compose"
 ]
 media3 = [
     "media3-exoplayer",

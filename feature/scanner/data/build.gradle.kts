@@ -11,5 +11,4 @@ dependencies {
     implementation(projects.core.database)
     implementation(projects.core.media)
     implementation(projects.feature.scanner.domain)
-    implementation(libs.bundles.koin)
 }

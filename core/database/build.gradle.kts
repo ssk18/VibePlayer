@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.vibeplayer.android.library)
     alias(libs.plugins.vibeplayer.android.room)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -12,5 +14,7 @@ dependencies {
     implementation(projects.core.common)
 
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.bundles.koin)
+
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
 }
