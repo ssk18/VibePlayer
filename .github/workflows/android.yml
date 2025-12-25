@@ -33,8 +33,11 @@ jobs:
       - name: Run Lint
         run: ./gradlew lintDebug
 
-      - name: Run Unit Tests
-        run: ./gradlew testDebugUnitTest
+      - name: Run Unit Tests with Coverage
+        run: ./gradlew testDebugUnitTest koverXmlReport koverHtmlReport
+
+      - name: Verify Coverage Threshold
+        run: ./gradlew koverVerify
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug
@@ -52,6 +55,15 @@ jobs:
         with:
           name: test-results
           path: '**/build/test-results/testDebugUnitTest/'
+
+      - name: Upload Coverage Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: |
+            **/build/reports/kover/html/
+            **/build/reports/kover/xml/
 
       - name: Upload APK
         uses: actions/upload-artifact@v4

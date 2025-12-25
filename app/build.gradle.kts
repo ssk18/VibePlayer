@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.ssk.vibeplayer"
-
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.ssk.vibeplayer"

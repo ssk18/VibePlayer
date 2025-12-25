@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.ssk.vibeplayer.buillogic.convention.ExtensionType
+import com.ssk.vibeplayer.buillogic.convention.configureAndroidLint
 import com.ssk.vibeplayer.buillogic.convention.configureBuildTypes
 import com.ssk.vibeplayer.buillogic.convention.configureKotlinAndroid
 import com.ssk.vibeplayer.buillogic.convention.libs
@@ -29,6 +30,8 @@ class AndroidApplicationConventionPlugin: Plugin<Project> {
                     commonExtension = this,
                     extensionType = ExtensionType.APPLICATION
                 )
+
+                configureAndroidLint(this)
             }
         }
     }
