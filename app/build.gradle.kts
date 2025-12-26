@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -22,7 +23,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -30,11 +31,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -42,7 +43,9 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.permission)
     implementation(projects.core.presentation.designsystem)
+    implementation(projects.feature.onboarding.presentation)
 
     // Hilt
     implementation(libs.hilt)
@@ -51,6 +54,11 @@ dependencies {
 
     // Splash screen
     implementation(libs.androidx.splashscreen)
+
+    implementation(libs.serialization)
+
+    implementation(libs.navigation3.runtime.compose)
+    implementation(libs.navigation3.ui.compose)
 
     // Core
     implementation(libs.androidx.core.ktx)
