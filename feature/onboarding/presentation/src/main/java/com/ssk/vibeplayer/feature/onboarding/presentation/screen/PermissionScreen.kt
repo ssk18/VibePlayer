@@ -1,5 +1,8 @@
 package com.ssk.vibeplayer.feature.onboarding.presentation.screen
 
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
@@ -17,6 +20,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,6 +46,7 @@ fun PermissionScreenRoot(
     viewModel: PermissionsViewModel = hiltViewModel(),
     onNavigateToScanResults: () -> Unit
 ) {
+    val context = LocalContext.current
     val audioPermission = getRequiredAudioPermission()
 
     val permissionLauncher = rememberLauncherForActivityResult(
@@ -56,22 +61,40 @@ fun PermissionScreenRoot(
         when (event) {
             PermissionEvent.NavigateToLibrary -> onNavigateToScanResults()
             PermissionEvent.RequestPermission -> permissionLauncher.launch(audioPermission)
+            PermissionEvent.OpenSettings -> {
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                    data = Uri.fromParts("package", context.packageName, null)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
     if (state.showDeniedDialog) {
+        val showOpenSettings = state.denialCount >= 2
         AlertDialog(
             onDismissRequest = { viewModel.onAction(PermissionAction.OnDeniedDialogDismiss) },
             title = { Text(text = "Permission Required") },
             text = {
                 Text(
-                    text = "VibePlayer needs access to your music files to function properly. " +
-                            "Without this permission, the app cannot build your music library or play songs."
+                    text = if (showOpenSettings) {
+                        "VibePlayer needs access to your music files to function properly. " +
+                                "Please enable the permission in Settings."
+                    } else {
+                        "VibePlayer needs access to your music files to function properly. " +
+                                "Without this permission, the app cannot build your music library or play songs."
+                    }
                 )
             },
             confirmButton = {
-                TextButton(onClick = { viewModel.onAction(PermissionAction.OnDeniedDialogRetry) }) {
-                    Text("Try Again")
+                if (showOpenSettings) {
+                    TextButton(onClick = { viewModel.onAction(PermissionAction.OnOpenSettings) }) {
+                        Text("Open Settings")
+                    }
+                } else {
+                    TextButton(onClick = { viewModel.onAction(PermissionAction.OnDeniedDialogRetry) }) {
+                        Text("Try Again")
+                    }
                 }
             },
             dismissButton = {

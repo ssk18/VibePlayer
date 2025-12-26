@@ -15,5 +15,5 @@ enum class PermissionStatus {
 data class PermissionState(
     val status: PermissionStatus = PermissionStatus.INITIAL,
     val showDeniedDialog: Boolean = false,
-    val isRetrying: Boolean = false
+    val denialCount: Int = 0
 )

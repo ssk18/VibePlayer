@@ -55,12 +55,11 @@ class PermissionsViewModel @Inject constructor(
                     _permissionState.update { it.copy(status = PermissionStatus.GRANTED) }
                     _permissionEvents.trySend(PermissionEvent.NavigateToLibrary)
                 } else {
-                    val shouldShowDialog = !_permissionState.value.isRetrying
                     _permissionState.update {
                         it.copy(
                             status = PermissionStatus.DENIED,
-                            showDeniedDialog = shouldShowDialog,
-                            isRetrying = false
+                            showDeniedDialog = true,
+                            denialCount = it.denialCount + 1
                         )
                     }
                 }
@@ -71,8 +70,13 @@ class PermissionsViewModel @Inject constructor(
             }
 
             PermissionAction.OnDeniedDialogRetry -> {
-                _permissionState.update { it.copy(showDeniedDialog = false, isRetrying = true) }
+                _permissionState.update { it.copy(showDeniedDialog = false) }
                 _permissionEvents.trySend(PermissionEvent.RequestPermission)
+            }
+
+            PermissionAction.OnOpenSettings -> {
+                _permissionState.update { it.copy(showDeniedDialog = false) }
+                _permissionEvents.trySend(PermissionEvent.OpenSettings)
             }
         }
     }

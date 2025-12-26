@@ -12,4 +12,7 @@ sealed interface PermissionAction {
 
     /** User clicks "Try Again" on denied dialog - retry permission request */
     data object OnDeniedDialogRetry : PermissionAction
+
+    /** User clicks "Open Settings" on denied dialog */
+    data object OnOpenSettings : PermissionAction
 }

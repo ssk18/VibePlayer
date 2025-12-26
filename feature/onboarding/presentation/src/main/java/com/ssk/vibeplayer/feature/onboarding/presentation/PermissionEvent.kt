@@ -10,4 +10,7 @@ sealed interface PermissionEvent {
 
     /** Navigate to the library screen */
     data object NavigateToLibrary : PermissionEvent
+
+    /** Open app settings */
+    data object OpenSettings : PermissionEvent
 }
