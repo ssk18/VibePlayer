@@ -10,5 +10,4 @@ dependencies {
     implementation(projects.core.domain)
     implementation(projects.core.media)
     implementation(projects.feature.player.domain)
-    implementation(libs.bundles.koin)
 }

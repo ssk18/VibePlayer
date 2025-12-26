@@ -3,7 +3,6 @@ import com.ssk.vibeplayer.buillogic.convention.ExtensionType
 import com.ssk.vibeplayer.buillogic.convention.configureAndroidLint
 import com.ssk.vibeplayer.buillogic.convention.configureBuildTypes
 import com.ssk.vibeplayer.buillogic.convention.configureKotlinAndroid
-import com.ssk.vibeplayer.buillogic.convention.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
@@ -36,7 +35,6 @@ class AndroidLibraryConventionPlugin: Plugin<Project> {
 
             dependencies {
                 "testImplementation"(kotlin("test"))
-                "implementation"(libs.findBundle("koin").get())
             }
         }
     }
