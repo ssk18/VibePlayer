@@ -31,6 +31,10 @@ internal fun Project.configureKotlinJvm() {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
+    tasks.withType<KotlinCompile>().configureEach {
+        compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
+    }
 }
 
 internal fun Project.configureKotlin() {

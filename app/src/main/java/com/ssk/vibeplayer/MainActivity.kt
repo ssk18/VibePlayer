@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         val startDestination = if (permissionChecker.hasAudioPermission()) {
-            Route.ScanResults
+            Route.Scanning
         } else {
             Route.Permissions
         }

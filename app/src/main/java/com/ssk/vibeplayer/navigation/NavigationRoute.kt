@@ -6,6 +6,7 @@ import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.ssk.vibeplayer.feature.onboarding.presentation.screen.PermissionScreenRoot
+import com.ssk.vibeplayer.feature.onboarding.presentation.screen.ScanningScreen
 
 @Composable
 fun NavigationRoute(
@@ -20,8 +21,12 @@ fun NavigationRoute(
             when (key) {
                 Route.Permissions -> NavEntry(key) {
                     PermissionScreenRoot(
-                        onNavigateToScanResults = { backStack.add(Route.ScanResults) }
+                        onNavigateToScanResults = { backStack.add(Route.Scanning) }
                     )
+                }
+
+                Route.Scanning -> NavEntry(key) {
+                    ScanningScreen()
                 }
 
                 Route.ScanResults -> NavEntry(key) {
