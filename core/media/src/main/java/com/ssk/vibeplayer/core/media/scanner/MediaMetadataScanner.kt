@@ -1,25 +1,21 @@
 package com.ssk.vibeplayer.core.media.scanner
 
 import android.content.Context
-import android.media.MediaMetadataRetriever
 import android.provider.MediaStore
-import com.ssk.vibeplayer.core.domain.model.ScanFilter
 import com.ssk.vibeplayer.core.domain.model.Track
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 
 class MediaMetadataScanner(
     private val context: Context
 ) : MediaScanner {
 
-    override suspend fun scanForMusic(filter: ScanFilter): Flow<List<Track>> = flow {
-        emit(scanForMusicSync(filter))
-    }.flowOn(Dispatchers.IO)
+    companion object {
+        private const val MIN_DURATION_MS = 30_000L  // 30 seconds
+        private const val MIN_SIZE_BYTES = 100_000L  // ~100KB
+    }
 
-    override suspend fun scanForMusicSync(filter: ScanFilter): List<Track> = withContext(Dispatchers.IO) {
+    override suspend fun scanForMusic(): List<Track> = withContext(Dispatchers.IO) {
         val tracks = mutableListOf<Track>()
         val projection = arrayOf(
             MediaStore.Audio.Media._ID,
@@ -36,8 +32,8 @@ class MediaMetadataScanner(
                 "${MediaStore.Audio.Media.SIZE} >= ?"
 
         val selectionArgs = arrayOf(
-            filter.minDurationMs.toString(),
-            filter.minSizeBytes.toString()
+            MIN_DURATION_MS.toString(),
+            MIN_SIZE_BYTES.toString()
         )
 
         val sortOrder = "${MediaStore.Audio.Media.TITLE} ASC"

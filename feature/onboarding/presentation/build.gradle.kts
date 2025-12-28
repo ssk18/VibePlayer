@@ -11,6 +11,10 @@ android {
 dependencies {
     implementation(projects.core.permission)
     implementation(projects.core.presentation.designsystem)
+    implementation(projects.core.domain)
+    implementation(projects.core.data)
+    implementation(projects.core.media)
+
     implementation(libs.androidx.splashscreen)
     implementation(libs.coil)
 

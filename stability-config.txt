@@ -1,0 +1,6 @@
+// Classes in core:domain that are stable
+com.ssk.vibeplayer.core.domain.model.Track
+com.ssk.vibeplayer.core.domain.model.*
+
+// Kotlin immutable collections (if used)
+kotlinx.collections.immutable.*

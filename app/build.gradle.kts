@@ -46,6 +46,8 @@ dependencies {
     implementation(projects.core.permission)
     implementation(projects.core.presentation.designsystem)
     implementation(projects.feature.onboarding.presentation)
+    implementation(projects.feature.scanner.presentation)
+    implementation(projects.feature.scanner.data)
 
     // Hilt
     implementation(libs.hilt)
@@ -59,6 +61,7 @@ dependencies {
 
     implementation(libs.navigation3.runtime.compose)
     implementation(libs.navigation3.ui.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
 
     // Core
     implementation(libs.androidx.core.ktx)

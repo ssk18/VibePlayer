@@ -1,4 +1,4 @@
-package com.ssk.vibeplayer.core.domain.repository
+package com.ssk.vibeplayer.feature.scanner.domain.repository
 
 import com.ssk.vibeplayer.core.domain.model.Track
 import kotlinx.coroutines.flow.Flow

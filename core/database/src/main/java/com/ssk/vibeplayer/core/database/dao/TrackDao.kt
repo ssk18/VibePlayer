@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Upsert
 import com.ssk.vibeplayer.core.database.entity.TrackEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -15,7 +16,7 @@ interface TrackDao {
     @Query("SELECT * FROM tracks WHERE id = :trackId")
     suspend fun getTrackById(trackId: Long): TrackEntity?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Upsert
     suspend fun insertTracks(tracks: List<TrackEntity>)
 
     @Query("DELETE FROM tracks WHERE id = :trackId")
@@ -26,4 +27,7 @@ interface TrackDao {
 
     @Query("SELECT filePath FROM tracks")
     suspend fun getAllFilePaths(): List<String>
+
+    @Query("DELETE FROM tracks WHERE filePath = :filePath")
+    suspend fun deleteTrackByPath(filePath: String)
 }

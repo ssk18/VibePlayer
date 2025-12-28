@@ -10,5 +10,8 @@ sealed interface Route: NavKey {
     data object Permissions: Route, NavKey
 
     @Serializable
+    data object Scanning: Route, NavKey
+
+    @Serializable
     data object ScanResults: Route, NavKey
 }
