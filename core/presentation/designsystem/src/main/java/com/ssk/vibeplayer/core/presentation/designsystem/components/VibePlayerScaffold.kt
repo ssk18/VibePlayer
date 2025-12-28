@@ -1,0 +1,29 @@
+package com.ssk.vibeplayer.core.presentation.designsystem.components
+
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalView
+
+@Composable
+fun VibePlayerScaffold(
+    modifier: Modifier = Modifier,
+    topBar: @Composable () -> Unit = {},
+    bottomBar: @Composable () -> Unit = {},
+    floatingActionButton: @Composable () -> Unit = {},
+    snackbarHost: @Composable () -> Unit = {},
+    content: @Composable (PaddingValues) -> Unit
+) {
+    val view = LocalView.current
+
+    Scaffold(
+        modifier = modifier,
+        bottomBar = bottomBar,
+        topBar = topBar,
+        floatingActionButton = floatingActionButton,
+        snackbarHost = snackbarHost
+    ) { paddingValues ->
+        content(paddingValues)
+    }
+}

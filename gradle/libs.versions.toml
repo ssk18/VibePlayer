@@ -37,8 +37,9 @@ androidx-datastore = "1.1.4"
 work = "2.10.0"
 kover = "0.9.1"
 media3 = "1.5.1"
-lifecycleViewModel = "2.8.7"
-navigation3 = "1.0.0"
+lifecycleViewModel = "2.10.0"
+navigation3 = "1.1.0-alpha01"
+kotlix-collection = "0.4.0"
 
 # Project versions
 projectApplicationId = "com.ssk.vibeplayer"
@@ -109,6 +110,7 @@ androidx-security-crypto = { group = "androidx.security", name = "security-crypt
 # Navigation 3
 navigation3-runtime-compose = { module = "androidx.navigation3:navigation3-runtime",  version.ref = "navigation3" }
 navigation3-ui-compose = { module = "androidx.navigation3:navigation3-ui",  version.ref = "navigation3" }
+androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewModel" }
 
 # Media3 (ExoPlayer)
 media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
@@ -124,10 +126,14 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 # Work manager
 androidx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
 
+# immutable-collection
+kotlinx-collection = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlix-collection" }
+
 # Gradle
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
 android-tools-common = { group = "com.android.tools", name = "common", version.ref = "androidTools" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+compose-gradlePlugin = { group = "org.jetbrains.kotlin", name = "compose-compiler-gradle-plugin", version.ref = "kotlin" }
 ksp-gradlePlugin = { group = "com.google.devtools.ksp", name = "com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
 room-gradlePlugin = { group = "androidx.room", name = "room-gradle-plugin", version.ref = "room" }
 kover-gradlePlugin = { group = "org.jetbrains.kotlinx", name = "kover-gradle-plugin", version.ref = "kover" }
